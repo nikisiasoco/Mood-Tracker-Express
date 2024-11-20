@@ -2,6 +2,7 @@ const request = require('supertest');
 const app = require('../app')
 
 
+
 describe('users api', () => {
 
     it('return firstname, lastname and emails', async () => {
@@ -15,7 +16,15 @@ describe('users api', () => {
                 })
             ])
         );
+    });
 
-    })
+    it('POST /post-user to return 201', async() => {
+        const mockData = {
+            "first_name": "Nik2",
+            "last_name": "Siasoco1",
+            "email": "nikisiasoco001@gmail.com"}
+        await request(app).post('/post-user').send(mockData).expect('Content-Type', /json/).expect(201);
+
+    });
 
 });
