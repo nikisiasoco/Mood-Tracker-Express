@@ -17,14 +17,21 @@ describe('users api', () => {
             ])
         );
     });
+    describe('POST REQUEST /post-user', () => {
+        it('empty body -> return 404', async () => {
+            await request(app).post('/post-user').expect(404);
+        });
 
-    it('POST /post-user to return 201', async() => {
-        const mockData = {
-            "first_name": "Nik2",
-            "last_name": "Siasoco1",
-            "email": "nikisiasoco001@gmail.com"}
-        await request(app).post('/post-user').send(mockData).expect('Content-Type', /json/).expect(201);
+        it('to return 201', async () => {
+            const mockData = {
+                "first_name": "Nik23",
+                "last_name": "Siasoco12",
+                "email": "nikisiasoco001@gmail.com1"}
+            await request(app).post('/post-user').expect('Content-Type', /json/).expect(201);
+    
+        });
 
-    });
+    }) 
+    
 
 });
